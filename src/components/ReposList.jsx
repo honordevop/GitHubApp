@@ -120,26 +120,36 @@ const ReposList = ({ viewLeaveHandler, repos }) => {
               {/* <th className="px-4 py-2">Allow Forking</th> */}
             </tr>
           </thead>
-          <tbody>
-            {currentRows.map((item, index) => (
-              <tr
-                key={index}
-                onClick={() => getRepoDetails(item.id)}
-                className="cursor-pointer"
-              >
-                <td className="border px-4 py-2">{item.idNum}</td>
-                <td className="border px-4 py-2">
-                  {item.created_at.slice(0, 10)}
+          {currentRows.length !== 0 ? (
+            <tbody>
+              {currentRows.map((item, index) => (
+                <tr
+                  key={index}
+                  onClick={() => getRepoDetails(item.id)}
+                  className="cursor-pointer"
+                >
+                  <td className="border px-4 py-2">{item.idNum}</td>
+                  <td className="border px-4 py-2">
+                    {item.created_at.slice(0, 10)}
+                  </td>
+                  <td className="border px-4 py-2">{item.name}</td>
+                  <td className="border px-4 py-2">
+                    {item?.language ? item.language : "Unspecified"}
+                  </td>
+                  <td className="border px-4 py-2">{item.visibility}</td>
+                  {/* <td className="border px-4 py-2">{item.allow_forking}</td> */}
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              <tr>
+                <td className="text-xl">
+                  No Data Available! Clear Filter or Refresh page
                 </td>
-                <td className="border px-4 py-2">{item.name}</td>
-                <td className="border px-4 py-2">
-                  {item?.language ? item.language : "Unspecified"}
-                </td>
-                <td className="border px-4 py-2">{item.visibility}</td>
-                {/* <td className="border px-4 py-2">{item.allow_forking}</td> */}
               </tr>
-            ))}
-          </tbody>
+            </tbody>
+          )}
         </table>
       </div>
       <div className="mt-4 flex justify-between w-full">

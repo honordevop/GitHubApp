@@ -5,7 +5,9 @@ import { fetchData, getObjectById } from "../../utils/store";
 const Home = () => {
   const [profile, setProfile] = useState([]);
   const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [filterWord, setFilterWord] = useState("");
   const repoUrl = "GET /users/honordevop/repos";
   const profileUrl = "GET /users/honordevop";
 
@@ -23,9 +25,13 @@ const Home = () => {
   //   console.log(repos);
   //   fetchDate(profileUrl, setProfile);
 
-  function filterByName(array, language) {
-    if (language) {
-      const lowercaseLanguage = language.trim().toLowerCase();
+  const onchageHandler = (e) => {
+    setFilterWord(e.target.value);
+    console.log(filterWord);
+  };
+  function filterByName(array, filterWord) {
+    if (filterWord.trim().length !== 0) {
+      const lowercaseLanguage = filterWord.trim().toLowerCase();
       return array.filter(
         (item) =>
           item.language && item.language.toLowerCase() === lowercaseLanguage
@@ -37,11 +43,15 @@ const Home = () => {
 
   const handleFilter = (e) => {
     e.preventDefault();
-    const filterWord = e.target[0].value;
+    // const filterWord = e.target[0].value;
     // console.log(filterWord);
     const filterResult = filterByName(repos, filterWord);
     // console.log(filterResult);
-    setRepos(filterResult);
+    if (filterResult) {
+      setRepos(filterResult);
+    } else {
+      return;
+    }
   };
 
   const viewLeaveHandler = (data, id) => {
@@ -94,6 +104,7 @@ const Home = () => {
           </label>
           <div className=" flex flex-col md:flex-row gap-6 mt-4">
             <input
+              onChange={onchageHandler}
               type="text"
               placeholder="Enter programming language"
               className="p-2 outline-none rounded-md"
@@ -104,7 +115,7 @@ const Home = () => {
               </button>
 
               <div
-                className="bg-gray-700 rounded-md px-4 py-2 text-white font-semibold"
+                className="bg-gray-700 rounded-md px-4 py-2 text-white font-semibold cursor-pointer"
                 onClick={() => setRefresh((prev) => !prev)}
               >
                 Clear Filter
