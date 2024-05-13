@@ -11,6 +11,7 @@ const Home = () => {
   const [refresh, setRefresh] = useState(false);
   const [showCreateRepoForm, setShowCreateRepoForm] = useState(false);
   const [filterWord, setFilterWord] = useState("");
+  const repoUrl = "GET /users/honordevop/repos";
   const profileUrl = "GET /users/honordevop";
 
   //   fetchDate(repoUrl);
@@ -20,15 +21,12 @@ const Home = () => {
   }, [profileUrl]);
 
   useEffect(() => {
-    const timestamp = Date.now();
-    const repoUrl = "GET /users/honordevop/repos?_=" + timestamp;
-
     fetchData(repoUrl, setRepos);
 
     setTimeout(() => {
       setLoading(false);
     }, 1200);
-  }, [refresh]);
+  }, [repoUrl, refresh]);
 
   //   console.log(profile);
   //   console.log(repos);

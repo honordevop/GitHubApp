@@ -11,21 +11,19 @@ const Repodetail = () => {
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const singleRepoUrl = `GET /repositories/${id}`;
+
   useEffect(() => {
-    const timestamp = Date.now();
-
-    const singleRepoUrl = `GET /repositories/${id}?_=` + timestamp;
-
     fetchData(singleRepoUrl, setRepoDetails);
     setTimeout(() => {
       setLoading(false);
     }, 1200);
-  }, [refresh]);
+  }, [singleRepoUrl, refresh]);
 
   const reFetchHandler = () => {
     // console.log("called");
     setRefresh((prev) => !prev);
-    console.log(refresh);
+    // console.log(refresh);
     // fetchData(singleRepoUrl, setRepoDetails);
   };
 
