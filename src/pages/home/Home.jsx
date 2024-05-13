@@ -136,6 +136,7 @@ const Home = () => {
           </label>
           <div className=" flex flex-col md:flex-row gap-6 mt-4">
             <input
+              required={true}
               onChange={onchageHandler}
               type="text"
               placeholder="Enter programming language"

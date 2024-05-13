@@ -48,11 +48,10 @@ const UpdateRepo = ({ data, closeUpdateRepoForm, reFetchHandler }) => {
 
     // const newTitle = e.target[0].value;
     // const newDesc = e.target[1].value;
+    if (newRepoTitle.trim().length !== 0 || newRepoDesc.trim().length == !0) {
+      updateRepo(newRepoTitle, newRepoDesc);
+    }
 
-    console.log(newRepoTitle);
-    console.log(newRepoDesc);
-
-    updateRepo(newRepoTitle, newRepoDesc);
     // createRepo(title, desc);
   };
 
@@ -110,6 +109,7 @@ const UpdateRepo = ({ data, closeUpdateRepoForm, reFetchHandler }) => {
             <div className="flex flex-col gap-3">
               <label className="font-semibold">Repo Title</label>
               <input
+                required={true}
                 type="text"
                 value={newRepoTitle}
                 onChange={titleChangeHandler}
@@ -120,6 +120,7 @@ const UpdateRepo = ({ data, closeUpdateRepoForm, reFetchHandler }) => {
             <div className="flex flex-col gap-3">
               <label className="font-semibold">Description</label>
               <input
+                required={true}
                 type="text"
                 value={newRepoDesc}
                 onChange={descChangeHandler}

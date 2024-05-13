@@ -34,7 +34,9 @@ const CreateRepo = ({ hideCreateFormHandler, reFetchHandler }) => {
     const title = e.target[0].value;
     const desc = e.target[1].value;
 
-    createRepo(title, desc);
+    if (title.trim().length !== 0 || desc.trim().length == !0) {
+      createRepo(title, desc);
+    }
   };
 
   return (
@@ -53,6 +55,7 @@ const CreateRepo = ({ hideCreateFormHandler, reFetchHandler }) => {
             <div className="flex flex-col gap-3">
               <label className="font-semibold">Repo Title</label>
               <input
+                required={true}
                 type="text"
                 placeholder="Enter the Title of your repo"
                 className="p-2 outline-none rounded-md"
@@ -61,6 +64,7 @@ const CreateRepo = ({ hideCreateFormHandler, reFetchHandler }) => {
             <div className="flex flex-col gap-3">
               <label className="font-semibold">Description</label>
               <input
+                required={true}
                 type="text"
                 placeholder="Enter description"
                 className="p-2 outline-none rounded-md"
