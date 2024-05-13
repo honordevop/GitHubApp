@@ -22,7 +22,6 @@ const Home = () => {
 
   useEffect(() => {
     fetchData(repoUrl, setRepos);
-
     setTimeout(() => {
       setLoading(false);
     }, 1200);
@@ -93,7 +92,7 @@ const Home = () => {
   return (
     <div className="w-[100vw] flex flex-col items-center ">
       <div className="container">
-        <div className="my-10 w-full flex flex-col items-center gap-5">
+        <div className="my-8 w-full flex flex-col items-center gap-5">
           <img
             src={profile.avatar_url}
             alt={`${profile.name} picture`}
@@ -123,6 +122,10 @@ const Home = () => {
             </p>
           </div>
         </div>
+        <p className="text-white font-semibold text-xs md:text-base">
+          Note: Github Enforced max-age=60 Cache-Control, So it may take 60s for
+          any update made to reflect
+        </p>
         <form
           action=""
           onSubmit={handleFilter}
