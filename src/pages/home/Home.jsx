@@ -104,12 +104,12 @@ const Home = () => {
               <span className="p-1 bg-white shadow-md">Bio:</span> {profile.bio}
             </p>
             <p>
-              <span className="p-1 bg-white shadow-md">Date Joined:</span>{" "}
-              {profile.created_at}
+              <span className="p-1 bg-white shadow-md">GitHub:</span>{" "}
+              {profile.html_url}
             </p>
             <p>
-              <span className="p-1 bg-white shadow-md">Last Updated:</span>{" "}
-              {profile.updated_at}{" "}
+              <span className="p-1 bg-white shadow-md">Date Joined:</span>{" "}
+              {profile.created_at}
             </p>
             <p>
               <span className="p-1 bg-white shadow-md">
