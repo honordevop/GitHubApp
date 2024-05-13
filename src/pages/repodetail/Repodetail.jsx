@@ -21,10 +21,10 @@ const Repodetail = () => {
   }, [singleRepoUrl, refresh]);
 
   const reFetchHandler = () => {
-    console.log("called");
-    // setRefresh((prev) => !prev);
-    // console.log(refresh);
-    fetchData(singleRepoUrl, setRepoDetails);
+    // console.log("called");
+    setRefresh((prev) => !prev);
+    console.log(refresh);
+    // fetchData(singleRepoUrl, setRepoDetails);
   };
 
   //   console.log(repoDetails);

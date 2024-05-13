@@ -3,7 +3,7 @@ import { octokit } from "../utils/octokit";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 
-const CreateRepo = ({ hideCreateFormHandler }) => {
+const CreateRepo = ({ hideCreateFormHandler, reFetchHandler }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   // Create a new repository
@@ -16,7 +16,8 @@ const CreateRepo = ({ hideCreateFormHandler }) => {
         private: false,
       });
 
-      console.log(response);
+      //   console.log(response);
+      reFetchHandler();
       setLoading(false);
       setSuccess(true);
       //   console.log("Repository created:", response.data.html_url);
@@ -33,47 +34,9 @@ const CreateRepo = ({ hideCreateFormHandler }) => {
     const title = e.target[0].value;
     const desc = e.target[1].value;
 
-    console.log(title);
-    console.log(desc);
-
     createRepo(title, desc);
   };
 
-  //   if (loading) {
-  //     return (
-  //       <div className="w-full h-full flex items-center justify-center">
-  //         <div>
-  //           <ClipLoader
-  //             color="#8A005C"
-  //             // loading={loading}
-  //             // cssOverride={override}
-  //             size={150}
-  //             aria-label="Loading Spinner"
-  //             data-testid="loader"
-  //           />
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-
-  //   if (success) {
-  //     return (
-  //       <div className="w-full h-full flex items-center justify-center">
-  //         <div className="flex flex-col gap-5">
-  //           <FaRegCheckCircle className="text-2xl" />
-  //           <div
-  //             className="bg-gray-700 rounded-md px-4 py-2 text-white font-semibold cursor-pointer md:text-base"
-  //             onClick={() => {
-  //               hideCreateFormHandler();
-  //               setSuccess(false);
-  //             }}
-  //           >
-  //             Close
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
   return (
     <div className="w-[100vw] h-[100vh] absolute top-0  flex flex-col items-center justify-center bg-[#00000091]">
       <div className="container glass p-5 h-max">

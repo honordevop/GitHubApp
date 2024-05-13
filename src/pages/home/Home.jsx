@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReposList from "../../components/ReposList";
-import { fetchData, getObjectById } from "../../utils/store";
+import { fetchData } from "../../utils/store";
 import { BounceLoader } from "react-spinners";
 import CreateRepo from "../../components/CreateRepo";
 
@@ -48,9 +48,13 @@ const Home = () => {
     }
   }
 
+  const reFetchHandler = () => {
+    // console.log("called");
+    setRefresh((prev) => !prev);
+    console.log(refresh);
+  };
   const hideCreateFormHandler = () => {
     setShowCreateRepoForm(false);
-    setRefresh((prev) => !prev);
     // console.log("clicked");
   };
 
@@ -158,7 +162,10 @@ const Home = () => {
         <ReposList repos={repos} />
 
         {showCreateRepoForm && (
-          <CreateRepo hideCreateFormHandler={hideCreateFormHandler} />
+          <CreateRepo
+            hideCreateFormHandler={hideCreateFormHandler}
+            reFetchHandler={reFetchHandler}
+          />
         )}
       </div>
     </div>

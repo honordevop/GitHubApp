@@ -8,7 +8,7 @@ const UpdateRepo = ({ data, closeUpdateRepoForm, reFetchHandler }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [currentRepoTitle, setCurrentRepoTitle] = useState(data?.name);
-  const [currentRepoDesc, setCurrentRepoDesc] = useState(data?.description);
+  // const [currentRepoDesc, setCurrentRepoDesc] = useState(data?.description);
   const [newRepoTitle, setNewRepoTitle] = useState(data?.name);
   const [newRepoDesc, setNewRepoDesc] = useState(data?.description);
 
