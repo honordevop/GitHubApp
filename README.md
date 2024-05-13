@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# GITHUB APP is a project submitted for 3MTT Frontend Engineering – Intermediate Module Assessment.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -14,57 +14,103 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Built with
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ReactJs
+- Tailwind
+- Octokit [For API request implementation]
 
-### `npm run build`
+## Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Requirements / APP Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Fetch and display a list of all repository.
+- Clicking on each of the repository on the list takes you to a page to page for the repo details.
+- A create button that will display a modal that can be used to create a new repo.
+- On the repo detail page, implement two button for update and delete features.
+- Navigate to a particular repo details page using /repo/:id.
+- 404 Not Found to handle navigating to url that does not exist
 
-### `npm run eject`
+## Routes
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+````
+<BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/repo/:id" element={<Repodetail />}></Route>
+        <Route path="*" element={<NotFoundPage />} />{" "}
+        {/* Catch-all route for 404 */}
+      </Routes>
+</BrowserRouter>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Install Nodejs
+- Pull this repo
+- run `npm install`
+- create .env file
+- Generate GitHub Token for your GitHub Dashboard
+- update .env with the REACT_APP_GITHUB_TOKEN and REACT_APP_GITHUB_USERNAME
+- run `npm start`
 
-## Learn More
+## Base URL
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# On local host :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+http://localhost:3000/
 
-### Code Splitting
+# Hosted on Netlify:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+https://altgit.netlify.app/
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+# Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Get all repos
 
-### Advanced Configuration
+- **Route**: GET /users/honordevop/repos
+- **Method**: GET
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+````
 
-### Deployment
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Update
 
-### `npm run build` fails to minify
+- **Route**: /PATCH /repos/:owner/:repo
+- **Method**: PATCH
+- **Body**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+
+{
+owner: process.env.REACT_APP_GITHUB_USERNAME,
+repo: currentRepoTitle,
+name: newRepoTitle,
+description: newRepoDesc,
+}
+
+```
+
+### Delete
+
+- **Route**: /DELETE /repos/:owner/:repo
+- **Method**: DELETE
+- **Body**:
+
+
+```
+
+{
+owner: process.env.REACT_APP_GITHUB_USERNAME,
+repo: data.name,
+}
+
+```
+
+```

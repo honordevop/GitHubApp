@@ -64,7 +64,7 @@ const RepoDetailCard = ({ data, reFetchHandler }) => {
             </button>
 
             <div
-              className="bg-red-700 rounded-md cursor-pointer px-4 py-2 text-white font-semibold cursor-pointer text-xs md:text-base border-none"
+              className="bg-red-700 rounded-md px-4 py-2 text-white font-semibold cursor-pointer text-xs md:text-base border-none"
               onClick={() => handleDelete()}
             >
               Delete
