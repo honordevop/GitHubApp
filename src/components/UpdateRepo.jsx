@@ -21,7 +21,7 @@ const UpdateRepo = ({ data, closeUpdateRepoForm, reFetchHandler }) => {
         repo: currentRepoTitle,
         name: newRepoTitle,
         description: newRepoDesc,
-        private: true,
+        // private: false,
       });
 
       // console.log(response);
