@@ -128,7 +128,9 @@ const ReposList = ({ repos }) => {
                   onClick={() => getRepoDetails(item.id)}
                   className="cursor-pointer"
                 >
-                  <td className="border px-4 py-2">{item.idNum}</td>
+                  <td className="border px-4 py-2">
+                    {item.idNum} <em>view</em>
+                  </td>
                   <td className="border px-4 py-2">
                     {item.created_at.slice(0, 10)}
                   </td>

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import ReposList from "../../components/ReposList";
 import { fetchData, getObjectById } from "../../utils/store";
 import { BounceLoader } from "react-spinners";
+import CreateRepo from "../../components/CreateRepo";
 
 const Home = () => {
   const [profile, setProfile] = useState([]);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
+  const [showCreateRepoForm, setShowCreateRepoForm] = useState(false);
   const [filterWord, setFilterWord] = useState("");
   const repoUrl = "GET /users/honordevop/repos";
   const profileUrl = "GET /users/honordevop";
@@ -32,7 +34,7 @@ const Home = () => {
 
   const onchageHandler = (e) => {
     setFilterWord(e.target.value);
-    console.log(filterWord);
+    // console.log(filterWord);
   };
   function filterByName(array, filterWord) {
     if (filterWord.trim().length !== 0) {
@@ -45,6 +47,12 @@ const Home = () => {
       return;
     }
   }
+
+  const hideCreateFormHandler = () => {
+    setShowCreateRepoForm(false);
+    setRefresh((prev) => !prev);
+    // console.log("clicked");
+  };
 
   const handleFilter = (e) => {
     e.preventDefault();
@@ -79,7 +87,7 @@ const Home = () => {
   }
 
   return (
-    <div className="w-[100vw] flex flex-col items-center">
+    <div className="w-[100vw] flex flex-col items-center ">
       <div className="container">
         <div className="my-10 w-full flex flex-col items-center gap-5">
           <img
@@ -87,7 +95,7 @@ const Home = () => {
             alt={`${profile.name} picture`}
             className="w-[200px] h-[200px] rounded-[100px]"
           />
-          <div className="bg-[#b6c1fc] p-5 md:text-xl font-semibold rounded-md w-full flex flex-col gap-5">
+          <div className="bg-[#b6c1fc] p-5 md:text-xl font-semibold rounded-md w-full flex flex-col gap-3 md:gap-5">
             <p className="">
               <span className="p-1 bg-white shadow-md">Fullname: </span>
               {profile.name}
@@ -100,7 +108,7 @@ const Home = () => {
               {profile.created_at}
             </p>
             <p>
-              <span className="p-1 bg-white shadow-md">Last Commit On:</span>{" "}
+              <span className="p-1 bg-white shadow-md">Last Updated:</span>{" "}
               {profile.updated_at}{" "}
             </p>
             <p>
@@ -117,7 +125,7 @@ const Home = () => {
           className="w-full glass my-2 p-2"
         >
           <label htmlFor="" className=" font-semibold">
-            Filter by Language
+            Filter Repo by Language
           </label>
           <div className=" flex flex-col md:flex-row gap-6 mt-4">
             <input
@@ -127,20 +135,31 @@ const Home = () => {
               className="p-2 outline-none rounded-md"
             />
             <div className="flex flex-row gap-5">
-              <button className="bg-green-700 rounded-md px-4 py-2 text-white font-semibold">
+              <button className="bg-green-700 rounded-md px-4 py-2 text-white text-xs md:text-base font-semibold">
                 Filter
               </button>
 
               <div
-                className="bg-gray-700 rounded-md px-4 py-2 text-white font-semibold cursor-pointer"
+                className="bg-gray-700 rounded-md px-4 py-2 text-white font-semibold cursor-pointer text-xs md:text-base"
                 onClick={() => setRefresh((prev) => !prev)}
               >
                 Clear Filter
+              </div>
+
+              <div
+                className="bg-gray-700 rounded-md px-2 md:px-4 py-2 text-white font-semibold cursor-pointer text-xs md:text-base"
+                onClick={() => setShowCreateRepoForm(true)}
+              >
+                Create New Repo
               </div>
             </div>
           </div>
         </form>
         <ReposList repos={repos} />
+
+        {showCreateRepoForm && (
+          <CreateRepo hideCreateFormHandler={hideCreateFormHandler} />
+        )}
       </div>
     </div>
   );
