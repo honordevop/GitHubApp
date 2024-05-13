@@ -13,7 +13,7 @@ const headers = [
   //   { label: "Allows Forking", key: "allow_forking" },
 ];
 
-const ReposList = ({ viewLeaveHandler, repos }) => {
+const ReposList = ({ repos }) => {
   // console.log(leave);
   // const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
   const navigate = useNavigate();

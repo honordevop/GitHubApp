@@ -4,8 +4,11 @@ const RepoDetailCard = ({ data }) => {
   return (
     <div className="w-full">
       <div className="container text-wrap">
+        <a href="/" className="font-bold p-2 text-xl bg-black mt-10 text-white">
+          Home
+        </a>
         <div className="mt-10 w-full">
-          <p className="text-2xl font-bold p-5 glass w-full my-10">
+          <p className="text-2xl font-bold p-5 glass w-full mb-10">
             Repository Name: {data?.name}
           </p>
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReposList from "../../components/ReposList";
 import { fetchData, getObjectById } from "../../utils/store";
+import { BounceLoader } from "react-spinners";
 
 const Home = () => {
   const [profile, setProfile] = useState([]);
   const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
   const [filterWord, setFilterWord] = useState("");
   const repoUrl = "GET /users/honordevop/repos";
@@ -19,6 +20,10 @@ const Home = () => {
 
   useEffect(() => {
     fetchData(repoUrl, setRepos);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1200);
   }, [repoUrl, refresh]);
 
   //   console.log(profile);
@@ -54,12 +59,24 @@ const Home = () => {
     }
   };
 
-  const viewLeaveHandler = (data, id) => {
-    const repo = getObjectById(data, id);
-    console.log(repo);
-    // setLeaveObj(leave);
-    // showViewLeave();
-  };
+  if (loading) {
+    return (
+      <div className="w-[100vw] h-screen flex items-center justify-center">
+        <div>
+          {/* <ThreeCircles
+            visible={true}
+            height="100"
+            width="100"
+            color="#8a005c"
+            ariaLabel="three-circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          /> */}
+          <BounceLoader className="" size={80} color="#8A005C" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-[100vw] flex flex-col items-center">
@@ -123,7 +140,7 @@ const Home = () => {
             </div>
           </div>
         </form>
-        <ReposList viewLeaveHandler={viewLeaveHandler} repos={repos} />
+        <ReposList repos={repos} />
       </div>
     </div>
   );
