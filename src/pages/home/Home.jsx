@@ -36,7 +36,7 @@ const Home = () => {
     setFilterWord(e.target.value);
     // console.log(filterWord);
   };
-  function filterByName(array, filterWord) {
+  function filterByLang(array, filterWord) {
     if (filterWord.trim().length !== 0) {
       const lowercaseLanguage = filterWord.trim().toLowerCase();
       return array.filter(
@@ -58,7 +58,7 @@ const Home = () => {
     e.preventDefault();
     // const filterWord = e.target[0].value;
     // console.log(filterWord);
-    const filterResult = filterByName(repos, filterWord);
+    const filterResult = filterByLang(repos, filterWord);
     // console.log(filterResult);
     if (filterResult) {
       setRepos(filterResult);

@@ -8,6 +8,7 @@ const Repodetail = () => {
   const { id } = useParams();
 
   const [repoDetails, setRepoDetails] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const singleRepoUrl = `GET /repositories/${id}`;
@@ -17,9 +18,16 @@ const Repodetail = () => {
     setTimeout(() => {
       setLoading(false);
     }, 1200);
-  }, [singleRepoUrl]);
+  }, [singleRepoUrl, refresh]);
 
-  console.log(repoDetails);
+  const reFetchHandler = () => {
+    console.log("called");
+    // setRefresh((prev) => !prev);
+    // console.log(refresh);
+    fetchData(singleRepoUrl, setRepoDetails);
+  };
+
+  //   console.log(repoDetails);
 
   //   if (loading) {
   //     return <div>Loading...</div>;
@@ -50,7 +58,7 @@ const Repodetail = () => {
 
   return (
     <div className="w-[100vw] flex flex-col items-center mb-10">
-      <RepoDetailCard data={repoDetails} />
+      <RepoDetailCard data={repoDetails} reFetchHandler={reFetchHandler} />
     </div>
   );
 };
