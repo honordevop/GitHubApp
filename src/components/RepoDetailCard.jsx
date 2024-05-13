@@ -16,7 +16,7 @@ const RepoDetailCard = ({ data, reFetchHandler }) => {
           Home
         </a>
         <div className="mt-10 w-full">
-          <p className="text-2xl font-bold p-5 glass w-full mb-10">
+          <p className="text-2xl font-bold p-5 glass w-full mb-5">
             Repository Name: {data?.name}
           </p>
 
@@ -85,7 +85,7 @@ const RepoDetailCard = ({ data, reFetchHandler }) => {
           <UpdateRepo
             closeUpdateRepoForm={closeUpdateRepoForm}
             data={data}
-            // reFetchHandler={reFetchHandler}
+            reFetchHandler={reFetchHandler}
           />
         )}
       </div>

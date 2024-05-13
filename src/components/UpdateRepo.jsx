@@ -25,7 +25,7 @@ const UpdateRepo = ({ data, closeUpdateRepoForm, reFetchHandler }) => {
       });
 
       // console.log(response);
-      // reFetchHandler();
+      reFetchHandler();
       setLoading(false);
       setSuccess(true);
       // console.log("Repository updated:", response.data.html_url);
